@@ -12,7 +12,7 @@ class Solution {
             int mid = l + (r - l) / 2;
             
              if (mid == x/mid) return mid;
-            // Avoid overflow by using mid < x / mid instead of mid * mid <= x
+            // Avoid integer overflow erro by using mid < x / mid instead of mid * mid <= x
             if (mid < x / mid) {
                 ans = mid; // Update the answer
                 l = mid + 1; // Search the right half
