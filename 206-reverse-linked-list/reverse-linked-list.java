@@ -18,19 +18,17 @@ class Solution {
         
        
         
-        while(curr!=null)
-        {
-            curr.next = before_curr;
+        
+         while (curr != null) {
+            after_curr = curr.next;  // Save the next node 
+            curr.next = before_curr;  // Reverse the current node's pointer
             
+            // Move pointers one step forward
             before_curr = curr;
             curr = after_curr;
-            if(after_curr!=null) // If `after_curr` is not null, move it to the next node in the original list
-            {
-                after_curr = after_curr.next;
-            }else{curr = null;} // If `after_curr` is null, set `curr` to null to exit the loop
-            
-            
         }
+        
+        // At the end, before_curr will be the new head of the reversed list
         return before_curr;
     }
 }
