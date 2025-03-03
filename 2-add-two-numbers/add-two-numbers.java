@@ -62,35 +62,8 @@ class Solution {
         // required linked list
         return res;
     }
-    static ListNode reverseLL(ListNode head)
-    {
-        ListNode curr = head;
-        ListNode after_curr = head.next;
-        ListNode before_curr = null;
-        
-       
-        
-        while(curr!=null)
-        {
-            curr.next = before_curr;
-            
-            before_curr = curr;
-            curr = after_curr;
-            if(after_curr!=null) // If `after_curr` is not null, move it to the next node in the original list
-            {
-                after_curr = after_curr.next;
-            }else{curr = null;} // If `after_curr` is null, set `curr` to null to exit the loop
-            
-            
-        }
-        return before_curr;
-    }
     
-    
-    
-    
-    
-    
+
     
     
     static int countNodes(ListNode head) 
@@ -109,12 +82,4 @@ class Solution {
 
 
 
-
-    static ListNode trimLeadingZeros(ListNode head)
-    {
-        while (head != null && head.val == 0) {
-            head = head.next;
-        }
-        return head;
-}
 }
