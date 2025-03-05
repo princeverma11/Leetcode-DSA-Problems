@@ -9,15 +9,8 @@
  * }
  */
  ///////////////////////////////////////////////////////////////////////////////
-// If you combine nodes equal to x and nodes greater than x 
-// into a single list, you lose the ability to maintain the relative 
-// order of nodes equal to x and nodes greater than x
-
-
-
-// Additionally, the large list's tail (lTail) might still be pointing to some node, 
-// which can cause a cycle in the linked list. 
-// You need to ensure that the lTail.next is set to null to avoid any cycles.
+ //SEE THIS SAME QUES ON GFG .. ITS THE SAME QUESTION BUT ITS SLIGHTLY MORE INTRESTING .. YOU WILL LIKE IT
+///////////////////////////
 
 class Solution {
     public ListNode partition(ListNode head, int x) {
