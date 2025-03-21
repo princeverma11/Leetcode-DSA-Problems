@@ -1,82 +1,86 @@
-class Solution {
-    public int[] sortArray(int[] nums) {
-        mergeSort(nums , 0 , nums.length-1);
-        return nums;
-    }
-
-    void mergeSort(int[] nums, int l , int h)
+class Solution 
+{
+    public int[] sortArray(int[] nums) 
     {
-        if(l<h)
-        {
-            int mid = l + (h-l)/2;
-            // Sort first and second halves
-            mergeSort(nums, l, mid);
-            mergeSort(nums, mid+1, h);
+        int l = 0 ;
+        int r = nums.length-1;
+        int[] arr = nums;
+
+        mergeSort(arr , l , r);
+        return arr;
         
-            // Merge the sorted halves
-            merge(nums, l, mid, h);
-        }
-       
+      
     }
 
-
-    // Merges two subarrays of nums[].
-    // First subarray is nums[l..m]
-    // Second subarray is nums[m+1..r]
-    void merge(int[] nums, int l, int mid , int h)
+    public void mergeSort(int arr[], int l, int r) {
+        // if length ie even the the right middle is choosen
+        int m = l+(r-l+1)/2; // note that +1 is done here because anuj 
+                             //goes from l to m-1 and m to r whiile calling merSort()
+        if(l<r)
+        {
+            // Sort first and second halves
+            mergeSort(arr, l, m-1);
+            mergeSort(arr, m, r);
+            // Merge the sorted halves
+            merge(arr , l , m , r);
+        }
+    }
+    public void merge(int[] arr, int l, int m, int r)
     {
-        // Find sizes of two subarrays to be merged
-        int n1 = mid-l+1;
-        int n2 = h-(mid+1)+1;
-
-        int[] L = new int[n1];
-        int[] R = new int[n2];
-
+        int Lsize = (m-1) - (l) +1;
+        int Rsize = r-m+1;
+        int[] L = new int[Lsize];
+        int[] R = new int[Rsize];
+        
         // Copy data to temp arrays
-        for(int i=0;i<n1;i++)
+        for(int i=0; i<Lsize ; i++)
         {
-            L[i]=nums[l+i];
+            L[i] = arr[l+i];
         }
-        for(int i=0;i<n2;i++)
+        for(int j=0; j<Rsize ; j++)
         {
-            R[i]= nums[mid+1+i];
+            R[j] = arr[m+j];  
         }
-
-
-        // Initial indices of first and second 
-        int i = 0;
-        int j = 0;
-        int k = l; // Initial index of merged subarray array
-
-
+        
         // Merge the temp arrays
-        while(i<n1 && j<n2)
+        
+        int i=0; //for left array
+        int j=0; // for right array
+        int k=l; // 'l' is the Initial index of merged subarray
+        
+        
+        // Copy remaining elements of L[] if any
+        while(i<Lsize && j<Rsize)
         {
-            if(L[i]<=R[j])
+            if(L[i]<R[j])
             {
-                nums[k] = L[i];
+                arr[k] = L[i];
                 i++;
-            }else{
-                nums[k] = R[j];
+            }
+            else
+            {
+                arr[k] = R[j];
                 j++;
             }
             k++;
         }
-
-        // Copy remaining elements of L[] if any
-        while(i<n1)
+        
+        // Copy remaining elements of R[] if any
+        while(i<Lsize)
         {
-            nums[k] = L[i];
+            arr[k] = L[i];
             i++;
             k++;
         }
-        // Copy remaining elements of R[] if any
-        while(j<n2)
+        while(j<Rsize)
         {
-            nums[k] = R[j];
+            arr[k] = R[j];
             j++;
             k++;
         }
-
+        
+ 
+        
     }
+    
 }
