@@ -1,3 +1,5 @@
+// notes page no. - 13
+//dont reed any gfg just watch striver video - https://www.youtube.com/watch?v=bR7mQgwQ_o8
 class Solution {
     public List<List<Integer>> generate(int numRows) {
 
@@ -10,7 +12,7 @@ class Solution {
 
 
 
-        
+
         // here we use < because numRows is not zero based indexing
         for (int row = 1; row < numRows; row++) 
         {
