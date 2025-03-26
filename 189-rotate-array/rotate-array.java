@@ -12,7 +12,7 @@ class Solution {
 
         int lr = n - net_right_rotations; // lr = left_rotaioons
         
-
+        // below is code for doing left rotations
          for (int i = 0; i <= n - 1; i++) {
             temp[i] = arr[i];
             temp[i + arr.length] = arr[i];
