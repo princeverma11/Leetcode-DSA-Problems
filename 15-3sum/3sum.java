@@ -1,10 +1,19 @@
+// video m solution jo anuj k karaya woh incomplete h, sare test cases pass nhi ho rhe the.
+
+// mene solution deepseek se nikalwaya h toh sare test cases pass ho rhe the.
+
+
+
+//link - https://leetcode.com/problems/3sum/
+
+//below is my complete solution with all test cases passing
 class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
         int[] arr = nums;
         int n = arr.length;
         
         List<List<Integer>> ans = new ArrayList<>();
-        Arrays.sort(nums);
+        Arrays.sort(arr);
 
         for(int i=0 ; i<n-2; i++)
         {
