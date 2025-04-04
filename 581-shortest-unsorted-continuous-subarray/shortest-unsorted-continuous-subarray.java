@@ -1,68 +1,61 @@
 class Solution {
     public int findUnsortedSubarray(int[] nums) {
-        
-        int[] arr = nums;
-        int max_elem = Integer.MIN_VALUE;
-        int min_elem = Integer.MAX_VALUE;
-        int startIndex=0 ;
-        int endIndex=0 ;
-        int i=0;
-        
-        
-        for( i=0 ; i<arr.length-1 ; i++)
+     int n= nums.length;
+
+     int startindex =-1;
+     int endindex =-1;
+
+     for(int i=0 ; i<n-1 ; i++)
+     {
+        if(nums[i+1]<nums[i])
         {
-            if(arr[i]>arr[i+1])
-            {
-                startIndex = i;
-                break;
-            }
+             startindex =i;
+             break; 
         }
-        if(i == arr.length-1)
+     }
+
+     if(startindex == -1) // if array is already sorted
+     {
+        return 0;
+     }
+
+     for(int i=n-1 ; i>0 ; i--)
+     {
+        if(nums[i-1]>nums[i])
         {
-           
-            return 0;
+             endindex = i;
+             break;
         }
-        
-        for( i=arr.length-1 ; i>0 ; i--)
+     }
+
+     int min = Integer.MAX_VALUE;
+     int max = Integer.MIN_VALUE;
+     for(int i = startindex ; i<=endindex ; i++)
+     {
+        min = Math.min(min , nums[i]);
+        max = Math.max(max , nums[i]);
+
+     }
+
+     for(int i=0 ; i<startindex ; i++)
+     {
+        if(nums[i] > min)
         {
-            if(arr[i]<arr[i-1])
-            {
-                endIndex = i;
-                break;
-            }
+            startindex = i;
+            break;
         }
-        
-        for( i=startIndex ; i<=endIndex ; i++)
+     }
+
+     for(int i=n-1 ; i>endindex ;i--)
+     {
+        if(nums[i]<max)
         {
-            if(arr[i]<min_elem)
-            {
-                min_elem = arr[i];
-            }
-            if(arr[i]>max_elem)
-            {
-                max_elem = arr[i];
-            }
+            endindex = i;
+            break;
         }
-        
-        for( i=0 ; i<startIndex ; i++)
-        {
-            if(arr[i]>min_elem)
-            {
-                startIndex = i;
-                break;
-            }
-        }
-        for( i=arr.length-1 ; i>endIndex ; i--)
-        {
-            if(arr[i]<max_elem)
-            {
-                endIndex = i;
-                break;
-            }
-        }
-        
-        
-        
-        return endIndex-startIndex+1;
+     }
+
+
+    return endindex-startindex+1;
     }
 }
