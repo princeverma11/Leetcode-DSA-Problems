@@ -5,8 +5,14 @@
 
 class Solution {
     public int[][] merge(int[][] intervals) {
-       // Sort intervals based on start values
-        Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+        
+                Arrays.sort(intervals, (a, b) -> {
+            if (a[0] != b[0]) {
+                return Integer.compare(a[0], b[0]);  // Compare first elements
+            } else {
+                return Integer.compare(a[1], b[1]);  // If first elements are equal, compare second
+            }
+        });
 
         // Use a list to store the merged intervals
         List<int[]> ans = new ArrayList<>();
