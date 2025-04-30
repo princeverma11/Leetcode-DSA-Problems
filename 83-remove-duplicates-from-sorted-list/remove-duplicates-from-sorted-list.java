@@ -10,27 +10,44 @@
  */
 class Solution {
     public ListNode deleteDuplicates(ListNode head) {
-        ListNode orighead = head; 
-        ListNode newhead = null;
-        ListNode temp = head;
+if (head == null) return null;
         
-        while(orighead != null)
-        {
-            while(orighead.next != null && orighead.val == orighead.next.val)
-            {
-                orighead = orighead.next;
+        ListNode current = head;
+        
+        while (current.next != null) {
+            if (current.val == current.next.val) {
+                current.next = current.next.next;
+            } else {
+                current = current.next;
             }
-            if (newhead == null) 
-            {
-                newhead = temp = orighead;
-            }
-            else{
-                temp.next = orighead;
-                temp = orighead;
-            }
-            orighead = orighead.next;
-        }
-        return newhead;
         }
         
+        return head;
+        // if(head==null) return null;
+        
+        // ListNode newHead = null;
+        // ListNode newLLtemp = null;
+        // ListNode tempO = head; // traverse on original LL
+        
+        // while(tempO.next != null)
+        // {
+        //     if(tempO.next != null && tempO.next.val != tempO.val)
+        //     {
+        //         if(newHead == null)
+        //         {
+        //             newHead = tempO;
+        //             newLLtemp = newHead;
+        //         }
+        //         else
+        //         {
+        //             newLLtemp.next = tempO;
+        //             newLLtemp = tempO; // so that newLLtemp is always the Last Node of newLL   
+        //         }
+                
+        //     }
+        // tempO = tempO.next;
+        // }
+        // newLLtemp.next = tempO;
+        // return newHead;
     }
+}
