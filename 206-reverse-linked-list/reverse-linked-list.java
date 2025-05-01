@@ -10,25 +10,21 @@
  */
 class Solution {
     public ListNode reverseList(ListNode head) {
-        if(head ==null || head.next == null) return head;
-
+        ListNode bc = null;
         ListNode curr = head;
-        ListNode after_curr = head.next;
-        ListNode before_curr = null;
-        
-       
-        
-        
-         while (curr != null) {
-            after_curr = curr.next;  // Save the next node 
-            curr.next = before_curr;  // Reverse the current node's pointer
-            
-            // Move pointers one step forward
-            before_curr = curr;
-            curr = after_curr;
+        ListNode ac = null;;
+
+        while(curr!=null)
+        {
+            ac = curr.next;
+
+            curr.next = bc; // one arrow reversed
+
+            bc = curr;
+            curr = ac;
+ 
         }
-        
-        // At the end, before_curr will be the new head of the reversed list
-        return before_curr;
+        return bc;
+
     }
 }
