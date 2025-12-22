@@ -1,86 +1,81 @@
-class Solution 
-{
-    public int[] sortArray(int[] nums) 
-    {
-        int l = 0 ;
+class Solution {
+    public int[] sortArray(int[] nums) {
+        int l = 0;
         int r = nums.length-1;
-        int[] arr = nums;
 
-        mergeSort(arr , l , r);
-        return arr;
+        mergeSort(nums , l , r);
+
+        return nums;
+
         
-      
+        
     }
 
-    public void mergeSort(int arr[], int l, int r) {
-        // if length ie even the the right middle is choosen
-        int m = l+(r-l+1)/2; // note that +1 is done here because anuj 
-                             //goes from l to m-1 and m to r whiile calling merSort()
+    void mergeSort(int[]nums , int l , int r)
+    {
         if(l<r)
         {
-            // Sort first and second halves
-            mergeSort(arr, l, m-1);
-            mergeSort(arr, m, r);
-            // Merge the sorted halves
-            merge(arr , l , m , r);
+            int m = l+(r-l)/2;
+            mergeSort(nums , l , m);
+            mergeSort(nums , m+1 , r);
+
+            merge(nums , l , m , r);
+
         }
+        
     }
-    public void merge(int[] arr, int l, int m, int r)
+    void merge(int[] nums , int l , int m , int r)
     {
-        int Lsize = (m-1) - (l) +1;
-        int Rsize = r-m+1;
+        int Lsize = m-l+1;
+        int Rsize = r-m;
+
         int[] L = new int[Lsize];
         int[] R = new int[Rsize];
+
+        // copy data to L[].........IMP
+        for (int i = 0; i < Lsize; i++) {
+        L[i] = nums[l + i];//IMP
+    }
+
+        // copy data to R[]..........IMP
+        for (int j = 0; j < Rsize; j++) {
+        R[j] = nums[m + 1 + j];//IMP
+    }
         
-        // Copy data to temp arrays
-        for(int i=0; i<Lsize ; i++)
+
+        //Yaha se neeche l , m , r ki nackchodi chhodod and sabse badiya apne Lsize and Rsize ko leke khelo , NO confusion and easy to use.
+
+        int i = 0;
+        int j = 0;
+        int k = l;
+        while(i < Lsize && j < Rsize) // bhot imp , NUJ ka logic mt dekho .... yeahi h sabse badiya condition
         {
-            L[i] = arr[l+i];
-        }
-        for(int j=0; j<Rsize ; j++)
-        {
-            R[j] = arr[m+j];  
-        }
-        
-        // Merge the temp arrays
-        
-        int i=0; //for left array
-        int j=0; // for right array
-        int k=l; // 'l' is the Initial index of merged subarray
-        
-        
-        // Copy remaining elements of L[] if any
-        while(i<Lsize && j<Rsize)
-        {
-            if(L[i]<R[j])
+            if(L[i]<=R[j])
             {
-                arr[k] = L[i];
+                nums[k] = L[i];
+                k++;
                 i++;
             }
             else
             {
-                arr[k] = R[j];
+                nums[k] = R[j];
+                k++;
                 j++;
             }
-            k++;
         }
         
-        // Copy remaining elements of R[] if any
-        while(i<Lsize)
+        while(i < Lsize) // notice te condiiton , easy h
         {
-            arr[k] = L[i];
+            nums[k] = L[i];
             i++;
             k++;
         }
-        while(j<Rsize)
+        while(j < Rsize) // notice the condiiton , easy h
         {
-            arr[k] = R[j];
+            nums[k] = R[j];
             j++;
             k++;
         }
-        
- 
-        
     }
-    
+
 }
