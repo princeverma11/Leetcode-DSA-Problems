@@ -1,33 +1,20 @@
-
 class Solution {
-    public void rotate(int[] nums, int k) 
-    {
-        int[] arr = nums;
-        int[] temp = new int[2*arr.length];
-        int n= arr.length;
-
+    public void rotate(int[] nums, int k) {
+         int[] doublearr = new int[nums.length*2];
         
-        // so now net_rotations will be always <= arr.length
-        int net_right_rotations = k % arr.length;  
-
-        int lr = n - net_right_rotations; // lr = left_rotaioons
-        
-        // below is code for doing left rotations
-         for (int i = 0; i <= n - 1; i++) {
-            temp[i] = arr[i];
-            temp[i + arr.length] = arr[i];
-        }
-        
-
-           
-        
-        for( int i=0 ; i<arr.length ; i++)
+        for(int i=0 ; i<nums.length ; i++)
         {
-            arr[i] = temp[i+lr];   
+            doublearr[i] = nums[i];
+            doublearr[i+nums.length] = nums[i];
         }
-            
+        int realrotations = k%nums.length;
+
+        int lr = nums.length - realrotations;
         
-        
+        for(int i=0 ; i<nums.length ; i++ )
+        {
+            nums[i] = doublearr[lr];
+            lr++;
+        }
     }
-        
-    }
+}
