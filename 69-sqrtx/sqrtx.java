@@ -1,33 +1,34 @@
 class Solution {
     public int mySqrt(int x) {
-       int l = 0;
-       int r = x;
-       int ans = -1;
-       if (x == 0 || x == 1) {  // edge case handling
+
+        int l = 0;
+        int r = x;
+        int m = l+(r-l)/2;
+        int ans = -1;
+
+        if (x == 0 || x == 1) {  // edge case handling
             return x;
         }
-       while(l<=r)
-       {
-        int mid = l + (r-l)/2;
 
-        
-        if(mid == x/mid)
+        while(l<=r)
         {
-            return mid;
+            if(m == x/m)
+            {
+                return m;
+            }
+            if(m > x/m)
+            {
+                r = m-1;
+                m = l+ (r-l)/2;
+            }
+            if(m < x/m)
+            {
+                ans = m;
+                l = m+1;
+                m = l+(r-l)/2;
+                
+            }
         }
-        if(mid > x/mid)
-        {
-            r = mid-1;
-        }
-
-        if(mid < x/mid)
-        {
-            ans = mid;
-            l = mid+1;
-        }
-       }
-       
-       return ans;
-       
+        return ans;
     }
 }
